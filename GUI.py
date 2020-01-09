@@ -181,7 +181,7 @@ class Cube:
         if self.selected:
             pygame.draw.rect(win, (255, 0, 0), (x, y, gap, gap), 3)
 
-    def draw_change(self):
+    def draw_change(self, win, g=True):
         fnt = pygame.font.SysFont("comicsans", 40)
 
         gap = self.width / 9
@@ -222,7 +222,7 @@ def valid(bo, num, pos):
 
     # Check column
     for i in range(len(bo)):
-        if bo[i][pos[1]] == num and pos[0] != 1:
+        if bo[i][pos[1]] == num and pos[0] != i:
             return False
 
     # Check box
@@ -230,7 +230,7 @@ def valid(bo, num, pos):
     box_x = pos[1] // 3
 
     for i in range(box_y*3, box_y*3 + 3):
-        for j in range(box_x * 3, box_y * 3 + 3):
+        for j in range(box_x * 3, box_x * 3 + 3):
             if bo[i][j] == num and (i, j) != pos:
                 return False
 
